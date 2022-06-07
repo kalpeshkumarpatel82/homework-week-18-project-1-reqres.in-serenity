@@ -28,6 +28,16 @@ public class UsersSteps {
                 .then();
     }
 
+    @Step("Getting All Users from Page 2")
+    public ValidatableResponse getAllUserFromPageTwo() {
+               return SerenityRest.given().log().all()
+                .contentType(ContentType.JSON)
+                .queryParam("page",2)
+                .when()
+                .get(EndPoints.GET_ALL_USERS)
+                .then();
+    }
+
     @Step("Getting the User information with ID: {0}")
     public HashMap<String, ?> getProductInfoByName(String userID) {
         HashMap<String, ?> userMap = SerenityRest.given().log().all()
@@ -91,7 +101,7 @@ public class UsersSteps {
     }
 
     @Step("Deleting user with ID {0}")
-    public ValidatableResponse deleteProduct(String userID){
+    public ValidatableResponse deleteProduct(String userID) {
         return SerenityRest.given().log().all()
                 .pathParam("userID", userID)
                 .when()
